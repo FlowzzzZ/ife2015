@@ -67,7 +67,7 @@ function getWidth(width, len) {
     posObj.offsetLeft = (width - posObj.left * (len - 1) - posObj.width) / 2;
     return posObj;
 }
-
+//不懂
 function getHintLfeft(posObj, i){
     if (posObj.left * i + posObj.offsetLeft + posObj.width / 2 - 60 <= 0) {
         return 5;

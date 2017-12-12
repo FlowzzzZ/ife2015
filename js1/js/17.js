@@ -60,6 +60,7 @@ var pageState = {
   nowGraTime: "day"
 }
 
+//获得柱状图的相关数据
 function getWidth(width,len){
 	var posObj={};
 	//柱状图宽度
@@ -72,7 +73,7 @@ function getWidth(width,len){
 	
 }
 
- 
+//
 /**
  * 渲染图表
  */
