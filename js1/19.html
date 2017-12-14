@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/*绘制panel*/
+			#container{
+				display: flex;/*弹性布局*/
+				align-items: flex-end;/*底部处于水平线上*/
+				width:500px;
+				height: 100px;
+			}
+			
+			#container div{
+				border: solid;
+				width:5px;
+		
+				display: inline-block;
+				font-size: 30px;
+				text-align:center;
+				padding: 0 15px;;
+				margin: 2px;
+				margin-right: 2px;
+				height:50px;
+				line-height: 50px;
+				background-color: red;
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="num" type="text" />
+		<input value="左侧入" type="button" />
+		<input value="右侧入" type="button" />
+		<input value="左侧出" type="button" />
+		<input value="右侧出" type="button" />
+		<input value="对当前图标排序" type="button" />
+		<div id="container">
+			
+		</div>
+	<script type="text/javascript" src="js/19.js" ></script>	
+	</body>
+</html>
