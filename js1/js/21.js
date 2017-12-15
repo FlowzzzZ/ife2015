@@ -30,15 +30,16 @@ function splitInput(text) {
 }
 
 //对textarea内的内容进行trim，否则当开头结尾有大量空格时会有bug
-function trim(str) {
+function trim(str2) {
     var regex1 = /^\s*/;
     var regex2 = /\s*$/;
-    return (str.replace(regex1, "")).replace(regex2, "");
+    return (str2.replace(regex1, "")).replace(regex2, "");
 }
 	
 	//定义队列对象
 window.onload=function(){
-	var container= document.getElementById("container");
+	var container1= document.getElementById("container1");
+	var container2= document.getElementById("container2");
 	var buttonList=document.getElementsByTagName("input");
 	var queue={
 		str1:[],
@@ -46,53 +47,80 @@ window.onload=function(){
 		rightPush1:function(content){
 			
 			this.str1.push(content);
-			}
 			
-			this.paint();
+			
+			this.paint1();
 			
 		},
 		rightPush2:function(arr){
-			for(var cur in arr){
-			this.str2.push(arr[cur]);
-			}
 			
-			this.paint();
+			for(var cur in arr){
+				
+					this.str2.push(arr[cur]);
+				}
+				
+				
+				
+			
+			
+			this.paint2();
 			
 		},
 		//移除使用
 		isEmpty:function(){
-			return(this.str.length==0);
+			return(this.str1.length==0);
 		},
 		
-		paint:function(){
-			var str="";
-			each(this.str,function(item){str+=("<div >"+item+"</div>")});
-			container.innerHTML=str;
+		paint1:function(){
+			var str1="";
+			each(this.str1,function(item){str1+=("<div >"+item+"</div>")});
+			container1.innerHTML=str1;
 			addDivDelEvent();
-			select1();
+			mouseover();
+			mouseout();
+		},
+		paint2:function(){
+			var str2="";
+			each(this.str2,function(item){str2+=("<div >"+item+"</div>")});
+			container2.innerHTML=str2;
+			addDivDelEvent();
+			
 		},
 		
 		
 		deleteID:function(id){
 			console.log(id);
-			this.str.splice(id,1);
-			this.paint();
+			this.str1.splice(id,1);
+			this.paint1();
+		
 		}
 	}
-	function select1(){
+	function mouseover(){
 		
-		for(var cur=0;cur<container.childNodes.length;cur++){
+		for(var cur=0;cur<container1.childNodes.length;cur++){
 			
-				addEvent(container.childNodes[cur],'mouseover',function(cur){
-					return container.childNodes[cur].style.background="red";
+				addEvent(container1.childNodes[cur],'mouseover',function(cur){
+					return function(){container1.childNodes[cur].style.background="red";}
 				}(cur));
 			
 		}
 	}
+	function mouseout(){
+		
+		for(var cur=0;cur<container1.childNodes.length;cur++){
+			
+				addEvent(container1.childNodes[cur],'mouseout',function(cur){
+					return function(){container1.childNodes[cur].style.background="lightskyblue";}
+				}(cur));
+			
+		}
+	}
+	
+	//给每个元素添加删除事件
 	function addDivDelEvent(){
-		for(var cur=0;cur<container.childNodes.length;cur++){
+		for(var cur=0;cur<container1.childNodes.length;cur++){
 			//先执行循环再进行赋值操作。所以要用闭包。延时函数的回调会在循环结束后才执行。
-			addEvent(container.childNodes[cur],'click',function(cur){
+			addEvent(container1.childNodes[cur],'click',function(cur){
 				return function(){return queue.deleteID(cur)}
 				}(cur));
 			}
@@ -101,14 +129,19 @@ window.onload=function(){
 	
 	
 	addEvent(buttonList[1],"click",function(){
-		var input= splitInput(trim((document.getElementById("num")).value));
+		var input1=buttonList[0].value;
 		
-		queue.rightPush1(input);
+		queue.rightPush1(input1);
 		
 	});
 	addEvent(buttonList[2],"click",function(){
-		var input= splitInput(trim((document.getElementById("inputbox")).value));
-		queue.rightPush2(input);
+		var input2= splitInput(trim((document.getElementById("inputbox")).value));
+		//判断是否已经存在
+		alert(queue.str2.indexOf(input2));
+		
+		if (queue.str2.indexOf(input2)==-1){
+		queue.rightPush2(input2);
+		}
 	});
 	
 	
