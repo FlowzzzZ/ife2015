@@ -1,0 +1,52 @@
+table{
+    margin: 0 auto;
+}
+div,td{
+    margin: 0px;
+    padding: 0px;
+}
+td{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+
+}
+/*从第二行第二列开始开始*/
+tr:nth-child(n+2)>td:nth-child(n+2){
+    border: 1px solid #cccccc;
+    margin: -1px;
+    position: relative;
+    left: 0px;
+}
+.left,.up,.down,.right{
+    background-color: red;
+}
+.left div,.right div,.up div,.down div{
+    background-color: blue;
+    position: absolute;
+}
+.left div,.right div{
+    width: 10px;
+    height: 100%;
+    up: 0px;
+}
+.up div,.down div{
+    width: 100%;
+    height: 10px;
+}
+.up div{
+    up: 0px;
+}
+.right div{
+    right: 0px;
+}
+.down div{
+    down: 0px;
+}
+.left div{
+    left: 0px;
+}
+.inputs{
+    margin: 0 auto;
+    width: 200px;
+}

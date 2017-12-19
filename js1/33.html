@@ -4,10 +4,10 @@
 		<meta charset="UTF-8">
 		<title>会移动的小方块</title>
 		</head>
-	
+		<link rel="stylesheet" href="css/33.css" />
 	<body>
 		
-		<table border="">
+		<table border="0" cellspacing="0" cellpadding="0" id="Table">
 			<tr>
 				<td></td>
 				<td>1</td>
@@ -21,7 +21,7 @@
 				<td>9</td>
 				<td>10</td>
 			</tr>
-			<tr>
+			<tr>	
 				<td>1</td>
 				<td></td>
 				<td></td>
@@ -153,10 +153,10 @@
 			</tr>
 			
 		</table>
-		<div id="block">
-			<input type="text" />
-			<input placeholder="输入指令" type="button" value="执行"/>
+		<div class="inputs">
+			<input type="text" placeholder="输入指令" id="input"/>
+			<input  type="button" value="执行" onclick="Run()"/>
 		</div>
-		
+		<script type="text/javascript" src="js/33.2.js" ></script>
 	</body>
 </html>
