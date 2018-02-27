@@ -11,39 +11,38 @@ td{
     text-align: center;
 
 }
-/*从第二行第二列开始开始*/
 tr:nth-child(n+2)>td:nth-child(n+2){
     border: 1px solid #cccccc;
     margin: -1px;
     position: relative;
     left: 0px;
 }
-.left,.up,.down,.right{
+.Left,.Top,.Bottom,.Right{
     background-color: red;
 }
-.left div,.right div,.up div,.down div{
+.Left div,.Right div,.Top div,.Bottom div{
     background-color: blue;
     position: absolute;
 }
-.left div,.right div{
+.Left div,.Right div{
     width: 10px;
     height: 100%;
-    up: 0px;
+    top: 0px;
 }
-.up div,.down div{
+.Top div,.Bottom div{
     width: 100%;
     height: 10px;
 }
-.up div{
-    up: 0px;
+.Top div{
+    top: 0px;
 }
-.right div{
+.Right div{
     right: 0px;
 }
-.down div{
-    down: 0px;
+.Bottom div{
+    bottom: 0px;
 }
-.left div{
+.Left div{
     left: 0px;
 }
 .inputs{

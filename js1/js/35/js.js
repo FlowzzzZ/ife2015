@@ -1,46 +1,31 @@
 /**
  * Created by harveyhepburn on 16/3/21.
  */
-//table标签里默认有一个tfbody标签，也就是table的一个子节点。
-var table=document.getElementById("Table").childNodes[1];
+var table=document.getElementById("Table").childNodes.item(1);
 var input=document.getElementById("input");
 var direction=["Top","Right","Bottom","Left"];
+
 
 var BlockNow={
     Block:GetBlock(5,5),
     Dir:3,
     X:5,
     Y:5,
-}
-SetDirection(BlockNow.Block,"Left")
+};
+SetDirection(BlockNow.Block,"Left");
 SetDiv(BlockNow.Block);
+
 function CleanDiv(Block){
     Block.innerHTML=""
-}
-function SetDiv(Block){
-    Block.innerHTML="<div></div>"
-}
-//返回的是一个dom对象,而且空白部分也相当于一个childnode.
-function GetBlock(x,y){
-    return table.childNodes.item(y*2).childNodes.item(x*2+1);
-}
-function SetDirection(Block,D){
-    Block.className=D;
 }
 function CalDirection(x){
     var d=(BlockNow.Dir+x>=0?BlockNow.Dir+x:3)%4;
     BlockNow.Dir=d;
     SetDirection(BlockNow.Block,direction[d]);
 }
-function Setter(Block){
-    SetDiv(Block);
-    SetDirection(Block,direction[BlockNow.Dir]);
-    SetDirection(BlockNow.Block,"");
-    CleanDiv(BlockNow.Block);
-    BlockNow.Block=Block;
-}
-function Go(){
-    switch(BlockNow.Block.className){
+
+function Go(Dir){
+    switch(Dir){
         case "Left":
             if(BlockNow.X>1){
                 BlockNow.X--;
@@ -72,19 +57,34 @@ function Go(){
     }
 }
 
-function Run(){
-    switch (input.value.trim()){
+function Run(line){
+    switch (line[0]){
         case "GO":
-            Go();
+            doGO(line);
             break;
-        case "TUN LEF":
-            CalDirection(-1);
+        case "TUN":
+            doTUN(line);
             break;
-        case "TUN RIG":
-            CalDirection(1);
+        case "TRA":
+            doTRA(line);
             break;
-        case "TUN BAC":
-            CalDirection(2);
+        case "MOV":
+            doMOV(line);
+            break;
+        default:
             break;
     }
+}
+
+function Do(){
+    var aCode=input.value.split(/[\r\n]+/g);
+    for(var i=0;i<aCode.length;i++){
+        var line=aCode[i].trim().split(" ");
+        Run(line);
+    }
+}
+
+function Refresh(){
+    input.value="";
+    CheckCode();
 }
